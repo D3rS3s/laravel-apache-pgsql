@@ -23,8 +23,7 @@ services:
       - frontend
       - backend
     ports:
-      - "8080:80"
-      - "443:443"
+      - "8085:80"
     volumes:
       - ./public_html/racketServiceWeb:/var/www/html
       - ./apache2/log:/var/log/apache2
@@ -41,7 +40,7 @@ services:
       POSTGRES_PASSWORD: postgres1
       POSTGRES_DB: racketservice
     ports:
-      - 5432:5432
+      - 5433:5432
     networks:
       - backend
 
