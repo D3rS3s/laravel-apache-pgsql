@@ -11,13 +11,13 @@ RUN docker-php-ext-install pdo pdo_pgsql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN adduser --uid 1001 --disabled-password --home /home/devuser devuser
+RUN adduser --uid 1000 --disabled-password --home /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
 RUN addgroup devuser www-data
 RUN addgroup devuser root
 
 RUN chgrp -R  www-data /var/www/html
-RUN chmod -R g+r /var/www/html/
+RUN chown -R www-data:www-data /var/www/html
 
-# RUN su - devuser && cd /var/www/html && composer install && php artisan key:generate
+#RUN su - devuser && cd /var/www/html && composer install && php artisan migrate
